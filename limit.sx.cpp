@@ -1,5 +1,5 @@
 #include <eosio.token/eosio.token.hpp>
-#include <wallet.sx/wallet.sx.hpp>
+#include <sx.wallet/wallet.sx.hpp>
 
 #include "limit.sx.hpp"
 
