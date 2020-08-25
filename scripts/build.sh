@@ -1,4 +1,4 @@
 #!/bin/bash
 
-eosio-cpp limit.sx.cpp -I ../sx.wallet/include -I ../eosio.token/include
+eosio-cpp limit.sx.cpp -I ..
 cleos set contract limit.sx . limit.sx.wasm limit.sx.abi

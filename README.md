@@ -26,6 +26,7 @@ cleos push action wallet.sx withdraw '["myaccount", "tethertether", "3.0000 USDT
 ## Table of Content
 
 - [TABLE `orders`](#table-orders)
+- [TABLE `settings`](#table-settings)
 - [ACTION `place`](#action-place)
 - [ACTION `fill`](#action-fill)
 - [ACTION `cancel`](#action-cancel)
@@ -64,6 +65,20 @@ $ cleos get table limit.sx limit.sx orders
     "timestamp": "2020-08-23T15:17:23",
     "bid": {"contract":"eosio.token", "quantity": "1.0000 EOS"},
     "ask": {"contract":"tethertether", "quantity": "3.0000 USDT"}
+}
+```
+
+## TABLE `settings`
+
+- `{int64_t} fee` - trading fee (pips 1/100 of 1%)
+- `{uint64_t} next_id` - next order ID counter
+
+### Example - json
+
+```json
+{
+    "fee": 0,
+    "next_id": 0
 }
 ```
 

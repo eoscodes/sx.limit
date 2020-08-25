@@ -4,6 +4,7 @@
 #include <eosio/asset.hpp>
 #include <eosio/time.hpp>
 #include <eosio/system.hpp>
+#include <eosio/singleton.hpp>
 
 using namespace eosio;
 using namespace std;
@@ -12,6 +13,45 @@ class [[eosio::contract("limit.sx")]] limitSx : public contract {
 
 public:
     using contract::contract;
+
+   /**
+     * ## TABLE `settings`
+     *
+     * - `{int64_t} fee` - trading fee (pips 1/100 of 1%)
+     * - `{uint64_t} next_id` - next order ID counter
+     *
+     * ### example
+     *
+     * ```json
+     * {
+     *   "fee": 0,
+     *   "next_id": 0
+     * }
+     * ```
+     */
+    struct [[eosio::table("settings")]] params {
+        int64_t             fee;
+        uint64_t            next_id;
+    };
+    typedef eosio::singleton< "settings"_n, params > settings;
+
+    /**
+     * ## TABLE `docs`
+     *
+     * - `{string} url` - Documentation url
+     *
+     * ### example
+     *
+     * ```json
+     * {
+     *   "url": "https://github.com/stableex/sx.limit"
+     * }
+     * ```
+     */
+    struct [[eosio::table("docs")]] docs_row {
+        string      url = "https://github.com/stableex/sx.limit";
+    };
+    typedef eosio::singleton< "docs"_n, docs_row > docs;
 
     /**
      * ## TABLE `orders`
@@ -156,6 +196,9 @@ public:
      */
     [[eosio::action]]
     void cancel( const uint64_t id );
+
+    [[eosio::action]]
+    void setfee( const int64_t fee );
 
     // action wrappers
     using place_action = eosio::action_wrapper<"place"_n, &limitSx::place>;

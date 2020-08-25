@@ -31,3 +31,4 @@ cleos transfer eosio myaccount "50000.0000 EOS" "init"
 cleos push action tethertether create '["tethertether", "100000000.0000 USDT"]' -p tethertether
 cleos push action tethertether issue '["tethertether", "5000000.0000 USDT", "init"]' -p tethertether
 cleos transfer tethertether myaccount "50000.0000 USDT" "init" --contract tethertether
+cleos transfer tethertether toaccount "50000.0000 USDT" "init" --contract tethertether
